@@ -171,9 +171,10 @@ window.addEventListener('scroll', scrollHeader)
 /* show scroll up */
 
 function scrollTop(){
-    const scrollUp = document.getElementById('scroll-top');
+    let scrollUp = document.getElementById('scroll-top');
     // When the scroll is higher than 560 viewport height, add the show-scroll class to the a tag with the scroll-top class
-    if(this.scrollY >= 560) scrollTop.classList.add('show-scroll'); else scrollUp.classList.remove('show-scroll')
+    if(this.scrollY >= 560) scrollUp.classList.add('show-scroll'); 
+    else scrollUp.classList.remove('show-scroll')
 }
 window.addEventListener('scroll', scrollTop)
 
@@ -208,3 +209,34 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+
+/* Trigger email */
+
+function triggerEmail() {
+    var tempParams = {
+        from_name: document.getElementById('from_name').value,
+        from_email: document.getElementById('from_email').value,
+        message: document.getElementById('message').value
+    }
+
+    console.log(from_name, message, from_email);
+
+    emailjs.send("service_u534yi5","template_wpo7naw",{
+        from_name: Object.values(from_name),
+        from_email: Object.values(from_email),
+        to_name: "Hari",
+        message: Object.values(message),
+        }).then(function(res){
+        console.log('success',res.status);
+
+        window.alert('Message sent !!! ');
+
+    })
+}
+
+/* dev progress popup */
+
+window.alert("This site is under active development");
+
+
